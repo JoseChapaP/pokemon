@@ -1,0 +1,18 @@
+.pokemon{
+    &-image{
+        width: 100%;
+        max-width: 100%;
+    }
+    &-pills{
+        li{
+            margin: 4px;
+        }
+    }
+}
+
+.containerCardsDetail{
+    margin-top:80px;
+    .mdc-card{
+        padding-bottom: 16px !important;
+    }
+}

@@ -1,1 +1,40 @@
-<p>detail works!</p>
+<div class="containerCardsDetail row col-12 p-0" *ngIf="!error">
+  <mat-card appearance="outlined" class="col-12 p-0" *ngIf="pokemonFull">
+    <mat-card-header class="row">
+      <mat-card-title class="col-12 text-center">{{ pokemonFull.name | titlecase }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <img mat-card-image src="./assets/images/{{pokemon.image}}" class="pokemon-image" *ngIf="pokemon">
+      <h6>Tipo(s)</h6>
+      <ul class="m-0 p-0 d-flex flex-wrap pokemon-pills">
+        <li mat-chip *ngFor="let tipos of pokemonFull.types">
+          {{tipos.type.name}}
+        </li>
+      </ul>
+      <h6>Habilidades</h6>
+      <ul class="m-0 p-0 d-flex flex-wrap pokemon-pills">
+        <li mat-chip *ngFor="let habilidad of pokemonFull.abilities">
+          {{habilidad.ability.name}}
+        </li>
+      </ul>
+      <h6>Apariciones en juegos</h6>
+      <ul class="m-0 p-0 d-flex flex-wrap pokemon-pills">
+        <li mat-chip *ngFor="let juegos of pokemonFull.game_indices">
+          {{juegos.version.name}}
+        </li>
+      </ul>
+    </mat-card-content>
+  </mat-card>
+  <mat-card appearance="outlined" class="col-12 p-0" *ngIf="!pokemonFull">
+    <mat-card-header class="row">
+      <mat-card-title class="col-12 text-center">Selecciona un Pokémon para ver su información</mat-card-title>
+    </mat-card-header>
+  </mat-card>
+</div>
+<div class="" *ngIf="error">
+  <mat-card appearance="outlined" class="col-12 p-0">
+    <mat-card-header class="row">
+      <mat-card-title class="col-12 text-center">No se pudo obtener la información del pokémon seleccionado</mat-card-title>
+    </mat-card-header>
+  </mat-card>
+</div>

@@ -1,1 +1,24 @@
-<p>favorite works!</p>
+<ng-container *ngIf="pokemonFull">
+    <h2 mat-dialog-title>{{pokemonFull.name}}</h2>
+    <mat-dialog-content>
+        <img mat-card-image src="./assets/images/{{data.pokemon.image}}" class="pokemon-image">
+        <h6>Tipo(s)</h6>
+        <ul class="m-0 p-0 d-flex flex-wrap pokemon-pills">
+        <li mat-chip *ngFor="let tipos of pokemonFull.types">
+            {{tipos.type.name}}
+        </li>
+        </ul>
+        <h6>Habilidades</h6>
+        <ul class="m-0 p-0 d-flex flex-wrap pokemon-pills">
+        <li mat-chip *ngFor="let habilidad of pokemonFull.abilities">
+            {{habilidad.ability.name}}
+        </li>
+        </ul>
+        <h6>Apariciones en juegos</h6>
+        <ul class="m-0 p-0 d-flex flex-wrap pokemon-pills">
+        <li mat-chip *ngFor="let juegos of pokemonFull.game_indices">
+            {{juegos.version.name}}
+        </li>
+        </ul>
+    </mat-dialog-content>
+</ng-container>

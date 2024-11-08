@@ -1,5 +1,43 @@
-<button
-  mat-raised-button
-  disabled
-  disabledInteractive
-  matTooltip="This is a tooltip!">Disabled button allowing interactivity</button>
+<div class="search">
+  <form class="form">
+    <mat-form-field class="col-12 pokemon-search">
+      <mat-label>Buscador de Pokémons</mat-label>
+      <input type="text"
+             placeholder="Buscar Pokémon"
+             aria-label="Pokemons"
+             matInput
+             [formControl]="searchPokemon"
+             [matAutocomplete]="auto">
+      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+        @for (option of filteredOptions | async; track option) {
+          <mat-option [value]="option">{{option}}</mat-option>
+        }
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
+  
+</div>
+<div class="containerCards d-flex flex-wrap col-12 p-0">
+  <mat-card appearance="outlined" *ngFor="let pokemon of obs | async" class="col-lg-3 col-12 p-0 pokemonCard">
+    <mat-card-header class="row mb-2">
+      <mat-card-title class="col-12 text-center position-relative">
+        {{ pokemon.name | titlecase }}
+        <mat-icon class="position-absolute top-0 start-100 translate-middle text-danger"  *ngIf="pokemon.name === isFavorite">
+          favorite
+        </mat-icon>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="text-center mb-2">
+      <img mat-card-image src="./assets/images/{{pokemon.image}}" class="pokemon-image">
+    </mat-card-content>
+    <mat-card-actions class="justify-content-around">
+      <button mat-icon-button (click)="showInfo(pokemon)">
+        <mat-icon class="align-top">info</mat-icon>
+      </button>
+      <button mat-icon-button (click)="favorite(pokemon)" [disabled]="pokemon.name === isFavorite">
+        <mat-icon class="align-top">favorite</mat-icon>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+<mat-paginator [pageSizeOptions]="[50]"></mat-paginator>

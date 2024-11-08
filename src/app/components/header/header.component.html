@@ -1,1 +1,18 @@
-<p>header works!</p>
+<div class="col-12 d-flex flex-wrap header" *ngIf="pokemon">
+    <mat-card appearance="outlined" class="col-12 p-0 d-flex flex-wrap flex-row align-items-center p-3">
+        <mat-card-header class="order-1 pt-0">
+            <mat-card-title class="col-12 text-center">{{ pokemon.name | titlecase }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="order-0">
+            <img mat-card-image src="./assets/images/{{pokemon.image}}" class="pokemon-image">
+        </mat-card-content>
+        <mat-card-actions class="order-2">
+            <button mat-icon-button (click)="showInfo(pokemon)">
+                <mat-icon class="align-top">info</mat-icon>
+            </button>
+        </mat-card-actions>
+    </mat-card>
+</div>
+<div class="col-12 d-flex flex-wrap header" *ngIf="!pokemon">
+    No tienes un pokemon favorito.
+</div>
