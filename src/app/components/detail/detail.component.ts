@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges, OnChanges } from '@angular/core';
 import { Pokemon, PokemonFull } from '../../core/pokemon';
 import { PokemonDetailService } from '../../services/pokemon-detail.service';
 import { Subscription } from 'rxjs';
@@ -9,11 +9,13 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./detail.component.scss']
 })
 
-export class DetailComponent implements OnInit {
+export class DetailComponent implements OnInit, OnChanges {
+  @Input() count: any[];
 
   pokemon: Pokemon;
   pokemonFull: PokemonFull;
   error: any;
+  pokemonLetters: any[];
   private readonly subs = new Subscription();  
 
   constructor(
@@ -28,7 +30,11 @@ export class DetailComponent implements OnInit {
           this.getFullInfo(selectedPokemon.url);      
         }
       }
-    })
+    })    
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    this.pokemonLetters = this.count;
   }
 
   getFullInfo(url: string) {

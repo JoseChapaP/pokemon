@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class ContainerComponent {
 
+  pokemonCount: any[];
+
+  addItem(count: any) {
+    this.pokemonCount = count;
+  }
+
 }

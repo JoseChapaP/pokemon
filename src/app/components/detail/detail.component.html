@@ -38,3 +38,9 @@
     </mat-card-header>
   </mat-card>
 </div>
+
+<ul class="m-0 p-0 d-flex flex-wrap pokemon-pills mt-4">
+  <li mat-chip *ngFor="let letter of pokemonLetters">
+    {{letter.letter}}: {{letter.count}}
+  </li>
+</ul>

@@ -2,10 +2,10 @@
     <app-header></app-header>
     <div class="container row col-12">
         <div class="col-lg-8 col-12">
-            <app-list-a></app-list-a>
+            <app-list-a (newItemEvent)="addItem($event)"></app-list-a>
         </div>
         <div class="col-lg-4 col-12">
-            <app-detail></app-detail>
+            <app-detail [count]="pokemonCount"></app-detail>
         </div>
     </div>
 </div>
